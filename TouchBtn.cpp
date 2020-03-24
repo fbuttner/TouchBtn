@@ -74,11 +74,11 @@ uint8_t TouchBtn::state(uint8_t TouchPad_Id)
 {
 	uint8_t ret=0;
 	if(TouchBtn::Pressed[TouchPad_Id])
-		ret &= TOUCH_BTN_PRESSED;
+		ret += TOUCH_BTN_PRESSED;
 	if(TouchBtn::Checked[TouchPad_Id])
-		ret &= TOUCH_BTN_CHECKED;
-	if(TouchBtn::Count[TouchPad_Id] > TouchBtn::Repeat[TouchPad_Id])
-		ret &= TOUCH_BTN_REPEAT;
+		ret += TOUCH_BTN_CHECKED;
+	if(TouchBtn::Repeat[TouchPad_Id] && TouchBtn::Count[TouchPad_Id] > TouchBtn::Repeat[TouchPad_Id])
+		ret += TOUCH_BTN_REPEAT;
 	
 	return ret;
 }
